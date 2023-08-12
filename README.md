@@ -1,6 +1,5 @@
 # Social Media App Project(ONGOING)
 
-![Project Logo](project-logo.png) <!-- Replace with your project logo or relevant image -->
 
 ## Description
 
@@ -27,7 +26,7 @@ This ongoing Social Media App Project is a platform that allows users to connect
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/your-username/social-media-app.git`
+1. Clone the repository: `git clone https://github.com/aj12-houdini/Our-App.git`
 2. Install frontend dependencies: `cd frontend && npm install`
 3. Install backend dependencies: `cd backend && npm install`
 4. Set up your database connection and environment variables.
@@ -37,7 +36,7 @@ This ongoing Social Media App Project is a platform that allows users to connect
 ## Screenshots
 
 ![App Screenshot 1](home.jpg)
-![App Screenshot 2](profile.png)
+![App Screenshot 2](profile.jpg)
 
 ## Future Enhancements
 
