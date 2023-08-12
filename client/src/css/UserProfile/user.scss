@@ -1,0 +1,13 @@
+body {
+  .searched-user {
+    cursor: pointer;
+    border: 2px solid black;
+    transition: all 0.3s ease;
+    margin: 10px auto;
+    width: 30%;
+    &:hover {
+      background-color: aliceblue;
+      transition: all 0.3s ease;
+    }
+  }
+}

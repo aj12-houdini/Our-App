@@ -1,0 +1,62 @@
+body {
+  background-color: white;
+}
+body .posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  gap: 20px;
+  flex-direction: column;
+  width: 50%;
+}
+body .posts .post-title {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.feed {
+  padding: 4px 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  color: #526d82;
+  margin: 0 0 10px;
+}
+
+.profile .profile-body {
+  margin-top: 50px;
+}
+.profile .profile-body .profile-heading {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.profile .profile-body .profile-info .accordion-details {
+  position: relative;
+}
+.profile .profile-body .profile-info .accordion-details p {
+  display: inline-block;
+}
+.profile .profile-body .profile-info .accordion-details .delete {
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  bottom: 11px;
+  cursor: pointer;
+}
+.profile .profile-body .profile-info .connections {
+  border: 2px solid black;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.01);
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  padding: 10px;
+}
+.profile .profile-body .profile-info .connections:hover {
+  background-color: seashell;
+  transition: all 0.3s ease;
+}/*# sourceMappingURL=dashboard.css.map */
