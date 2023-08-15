@@ -11,7 +11,7 @@ const server = app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
 
-let users = {}
+let users = {};
 
 const io = require("socket.io")(server, {
   cors: { origin: "http://localhost:3000" },
@@ -19,26 +19,21 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
-  socket.on('private_chat',function(data){
+  socket.on("private_chat", function (data) {
     const to = data.to,
-            message = data.message;
-
-    if(users.hasOwnProperty(to)){
-        io.emit('private_chat',{
-            //The sender's username
-            username : socket.username,
-
-            //Message sent to receiver
-            message : message
-        });
-    }
-
-});
-
+      message = data.message;
+    console.log(to);
+      socket.to(to).emit("private_chat", {
+        //The sender's username
+        username: socket.username,
+        //Message sent to receiver
+        message: message,
+      });
+  });
   socket.on("newUser", (data) => {
-    users[data.username]= data.username
-    socket.username = socket
-    console.log("New user signed in")
+    users[data.username] = data.username;
+    socket.username = socket;
+    console.log("New user signed in");
   });
   socket.on("disconnect", () => {
     console.log("🔥: A user disconnected");

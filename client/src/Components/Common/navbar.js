@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import "../../css/Nav/nav.css";
 import Button from "@mui/material/Button";
 
-function NavBar({socket}) {
+function NavBar({ socket }) {
   async function handleSubmit(event) {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -30,7 +30,9 @@ function NavBar({socket}) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
-      socket.emit('newUser', {username: data.username});
+      socket.auth = { username: data.username };
+      socket.connect()
+      socket.emit("newUser", { username: data.username });
       window.location.href = "/dashboard";
     } else {
       console.log("Error");
