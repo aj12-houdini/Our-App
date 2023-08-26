@@ -11,24 +11,44 @@ const server = app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
 
-let users = {};
-
 const io = require("socket.io")(server, {
   cors: { origin: "http://localhost:3000" },
 });
 
-io.on("connection", (socket) => {
+io.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  console.log(username)
+  socket.username = username;
+  next();
+}).on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
+
+  const users = [];
+
+  for (let [id, socket] of io.of("/").sockets) {
+    console.log(id)
+    users.push({
+      userId: id,
+      username: socket.username,
+    });
+  }
+  console.log(users);
+  socket.emit("users", users);
+  socket.broadcast.emit("user connected", {
+    username: socket.username,
+    userId: socket.id,
+  });
+
   socket.on("private_chat", function (data) {
     const to = data.to,
       message = data.message;
     console.log(to);
-      socket.to(to).emit("private_chat", {
-        //The sender's username
-        username: socket.username,
-        //Message sent to receiver
-        message: message,
-      });
+    socket.to(to).emit("private_chat", {
+      //The sender's username
+      username: socket.username,
+      //Message sent to receiver
+      message: message,
+    });
   });
   socket.on("newUser", (data) => {
     users[data.username] = data.username;

@@ -31,8 +31,7 @@ function NavBar({ socket }) {
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
       socket.auth = { username: data.username };
-      socket.connect()
-      socket.emit("newUser", { username: data.username });
+      socket.connect();
       window.location.href = "/dashboard";
     } else {
       console.log("Error");

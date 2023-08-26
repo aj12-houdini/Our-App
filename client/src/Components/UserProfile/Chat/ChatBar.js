@@ -1,9 +1,14 @@
-export default function ChatBar({ socket }) {
-  const [users, setUsers] = useState([]);
+import { useState,useEffect } from "react";
 
+export default function ChatBar({ socket }) {
+
+  const [users,updateUsers] = useState([])
   useEffect(() => {
-    socket.on("newUsersResponse", (data) => setUsers(data));
-  }, [socket, users]);
+    socket.on("user connected", (receivedUsers) => {
+      console.log(receivedUsers)
+        updateUsers([receivedUsers,...users])
+    });
+  });
   return (
     <div className="chat-sidebar">
       <h2>Open Chat</h2>
@@ -12,7 +17,7 @@ export default function ChatBar({ socket }) {
         <h3>ACTIVE USERS</h3>
         <div>
           {users.map((user) => {
-            return <p>{user.userName}</p>;
+            return <p>{user.username}</p>;
           })}
         </div>
       </div>

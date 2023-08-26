@@ -1,19 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function ChatFooter({socket}) {
+export default function ChatFooter({ socket }) {
   const [message, setMessage] = useState("");
   const [username, updateUsername] = useState("");
 
+
   function handleSubmit(e) {
     e.preventDefault();
-    if (message.trim() && username) {
-      socket.emit("private_chat", {
-        message: message,
-        to: socket.id,
-        socketId: socket.id,
-      });
-    }
-    console.log({ username, message });
     setMessage("");
   }
   return (
@@ -31,7 +24,7 @@ export default function ChatFooter({socket}) {
         </button>
       </form>
 
-      <form onSubmit={(e) => e.preventDefault() }>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           placeholder="Enter username"
